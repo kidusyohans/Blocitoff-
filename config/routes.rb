@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'items/create'
+
+  get 'items/show'
+
+  get 'items/update'
+
   get 'tasks/show'
 
   get 'tasks/update'
@@ -12,6 +18,8 @@ Rails.application.routes.draw do
   get 'users/update'
 
   devise_for :users
+  
+  resources :users, only: [:create]
   
   get 'welcome/index'
 

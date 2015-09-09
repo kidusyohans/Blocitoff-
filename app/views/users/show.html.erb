@@ -1,2 +1,16 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container-fluid">
+  <h3>Hello <%= @user.name %></h3>
+  <div class="row">
+    <div class="col-md-lg">
+      <h3 class="text-center">Your To Do's</h3>
+      <div>
+        <%= render "items/form" %>
+      </div>
+      <div class="container"
+      <ul class = "list-group js-items" >
+        <%= render @items %>
+      </ul>
+
+    </div>
+  </div>
+</div>
