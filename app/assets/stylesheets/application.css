@@ -13,12 +13,22 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap";
- 
- user-info {
-   margin-top: 9px;
+@import "bootstrap-sprockets";
+@import "bootstrap";
+.vote-arrows {
+	width: 40px;
+	text-align: center;
+}
+.favorite {
+   margin-top: 20px;
  }
- 
- .nav {
-   margin-top: 5px;
- }
+.user-info {
+		margin-top: 9px;
+}
+
+.voted {
+  opacity: 0.5;
+}
+.nav {
+		margin-top: 5px;
+}
