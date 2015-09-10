@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   get 'items/update'
 
   get 'tasks/show'
+  
+  get 'tasks/new'
 
   get 'tasks/update'
 

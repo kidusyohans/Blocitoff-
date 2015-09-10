@@ -1,0 +1,8 @@
+<h1><u>Your Tasks</u></h1>
+<% policy_scope(@tasks).each do |task| %>
+  <h3>
+    <%= link_to task.title, task %> </br>
+  </h3>
+<% end %>
+
+<%= link_to "New Task", new_task_path, class: 'btn btn-success' %>

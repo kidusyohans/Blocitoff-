@@ -1,2 +1,26 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<div class='container-fluid'>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h1><center><%= @task.title %></center></h1>
+    </div>
+  </div>
+
+  <div class='container outside-border'>
+   
+     
+    <div class= 'row header'>
+      <div class='col-md-8'><b>Description of task</b></div>
+      <div class='col-md-2'><b>Days left</b></div>
+    </div>
+
+    
+    <div class='new-item'>
+      <%= render partial: 'items/form', locals: {task: @task, item: @item } %>
+    </div>
+
+    
+    <div class='items-task'>
+      <%= render partial: 'items/item', collection: @items %>
+    </div>
+  </div>
+</div>
