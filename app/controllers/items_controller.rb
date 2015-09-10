@@ -1,16 +1,16 @@
 class ItemsController < ApplicationController
   
   def create
-
-    @item = Items.new( item_params )
-    @item.task = @task
-    @new_item = Item.new
+    @item = current_user.items.build(item_params)
     if @item.save
-      redirect_to [ @task], notice: "Item saved successfully."
-    else
-      redirect_to [@task], notice: "Item failed to save."
-      render :new
-    end
+      respond_to do |format|
+        format.html { redirect_to user_path(current_user), notice: "Item was added successfully." }
+        format.js
+      end    
+    else 
+      flash[:error] = "Error adding item. Please try again."
+      redirect_to user_path(current_user)
+    end  
   end
 
   def show
@@ -20,21 +20,19 @@ class ItemsController < ApplicationController
   end
   
   def destroy
-     @task = Task.find(params[:post_id])
-     @item = @task.items.find(params[:id])
+    
+     @item = Item.find(params[:id])
      authorize @item
 
-     if @item.destroy
-       flash[:notice] = "Item was removed."
-       redirect_to [@task.item, @task]
-     else
-       flash[:error] = "Item couldn't be deleted. Try again."
-       redirect_to [@task.item, @task]
-     end
+    if @item.destroy
+        flash[:notice] = "Item was deleted successfully."
+      else
+        flash[:error] = "There was an error deleting the item. Please try again."
+    end
 
-     respond_to do |format|
-       format.html
-       format.js
-     end
+    respond_to do |format|
+      format.html { redirect_to user_path(current_user) }
+      format.js
+    end
   end
 end
