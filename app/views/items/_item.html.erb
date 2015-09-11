@@ -1,18 +1,18 @@
 <div id=<%="item-#{item.id}"%> class="item list-group-item">
   <button type="button" class="btn btn-default btn-lg display-inline-right">
     <span class="glyphicon glyphicon-ok completed-icon" aria-hidden="true"></span>
-    <%= link_to 'Item Completed', user_item_path(@user.id, item.id), method: :delete, remote: true %>
+    <%= link_to 'Item Completed', user_item_path(current_user, item), method: :delete%>
   </button>
   <h4 class='list-group-item-heading'><%= item.name %></h4> 
-  <p class='list-group-item-text'><%= time_left(item) %></p>
+  <p class='list-group-item-text'><%# time_left(item) %></p>
 </div>
 
 <%= content_tag :li, class: 'list-group-item todo-item-even todo-item-odd', id: "item-#{item.id}" do %>
 
-  <%= item.description %>
-  <%= link_to " ", [current_user, item],  method: :delete, class: 'glyphicon glyphicon-ok pull-right', remote: true %>
+  <%= item.name %>
+  <%= link_to " ", [current_user, item],  method: :delete, class: 'glyphicon glyphicon-ok pull-right' %>
   <div class="text-center-small">
-    <small class="<%= format_days_remaining(item.days_left) %>">
+    <small class="<%= item.days_left %>">
       <%= item.days_left.to_s. + " days left to complete"  %>
     </small>
   </div>

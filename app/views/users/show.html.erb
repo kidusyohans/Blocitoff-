@@ -1,10 +1,10 @@
 <div class="container-fluid">
-  <h3>Hello <%= @user.name %></h3>
+  <h3>Hello <%= %></h3>
   <div class="row">
     <div class="col-md-lg">
       <h3 class="text-center">Your To Do's</h3>
       <div>
-        <%= render "items/form" %>
+        <%= render "items/form", locals: {user: @user} %>
       </div>
       <div class="container"
       <ul class = "list-group js-items" >

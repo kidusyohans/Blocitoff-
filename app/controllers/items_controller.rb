@@ -3,14 +3,11 @@ class ItemsController < ApplicationController
   def create
     @item = current_user.items.build(item_params)
     if @item.save
-      respond_to do |format|
-        format.html { redirect_to user_path(current_user), notice: "Item was added successfully." }
-        format.js
-      end    
+      flash[:notice] = "Item created"   
     else 
       flash[:error] = "Error adding item. Please try again."
-      redirect_to user_path(current_user)
     end  
+    redirect_to user_path(current_user)
   end
 
   def show
@@ -22,7 +19,7 @@ class ItemsController < ApplicationController
   def destroy
     
      @item = Item.find(params[:id])
-     authorize @item
+     #authorize @item
 
     if @item.destroy
         flash[:notice] = "Item was deleted successfully."
@@ -30,9 +27,12 @@ class ItemsController < ApplicationController
         flash[:error] = "There was an error deleting the item. Please try again."
     end
 
-    respond_to do |format|
-      format.html { redirect_to user_path(current_user) }
-      format.js
-    end
+    redirect_to user_path(current_user)
+  end
+  
+  private
+  
+  def item_params
+    params.require(:item).permit(:name)
   end
 end
