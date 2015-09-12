@@ -11,6 +11,9 @@ gem 'bootstrap-sass'
 group :production do
    gem 'pg'
    gem 'rails_12factor'
+   gem 'faker'
+   gem "figaro"
+   gem 'puma', group: :production
  end
  
 group :development do

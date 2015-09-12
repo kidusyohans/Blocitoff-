@@ -1,5 +1,12 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+  
+  
+  # http://bloccit.herokuapp.com
+  config.action_mailer.default_url_options = { host: 'blocitoff-15.herokuapp.com' }
+  #Notifier.welcome(User.first).deliver_now # sends the email
+  #mail = Notifier.welcome(User.first)      # => an ActionMailer::MessageDelivery object
+  #mail.deliver_now                    # sends the email
 
   # Code is not reloaded between requests.
   config.cache_classes = true
